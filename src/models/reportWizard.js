@@ -4,6 +4,7 @@ export default {
   state: {
     currentStep: 0,
     loading: true,
+    basicInfo: {},
   },
 
   effects: {
@@ -29,6 +30,16 @@ export default {
       return {
         ...state,
         currentStep: payload,
+      };
+    },
+    setBasicInfo(state, { payload }) {
+      const { key, value } = payload;
+      return {
+        ...state,
+        basicInfo: {
+          ...state.basicInfo,
+          [key]: value,
+        },
       };
     },
   },

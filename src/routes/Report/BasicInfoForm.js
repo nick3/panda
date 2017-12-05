@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Form, Input, Select } from 'antd';
+import { Form, Input } from 'antd';
 import { forEach, reduce } from 'lodash';
 
 const FormItem = Form.Item;

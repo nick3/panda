@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Steps, Button, message } from 'antd';
 import BasicInfoForm from './BasicInfoForm';
+import Step2Form from './Step2Form';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import { wizardSelector } from './selector';
 
@@ -10,7 +11,7 @@ import styles from './Wizard.less';
 const { Step } = Steps;
 
 const steps = [{
-  title: '项目情况简介',
+  title: '项目情况反馈',
   content: (props) => {
     const { dispatch, basicInfo } = props;
     return (<BasicInfoForm
@@ -24,14 +25,14 @@ const steps = [{
     />);
   },
 }, {
-  title: '传传传',
+  title: '染色质打断结果反馈',
   content: (props) => {
-    const { dispatch, basicInfo } = props;
-    return (<BasicInfoForm
-      value={basicInfo}
+    const { dispatch, step2Data } = props;
+    return (<Step2Form
+      value={step2Data}
       onChange={(value) => {
         dispatch({
-          type: 'reportWizard/setBasicInfo',
+          type: 'reportWizard/setStep2Data',
           payload: value,
         });
       }}

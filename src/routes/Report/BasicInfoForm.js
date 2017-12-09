@@ -38,7 +38,7 @@ class BasicInfoForm extends PureComponent {
     };
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form>
         <FormItem
           {...formItemLayout}
           label="客户姓名"

@@ -26,6 +26,13 @@ const FormItem = Form.Item;
   },
 })
 class Step2Form extends PureComponent {
+  normFile = (e) => {
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e && e.fileList;
+  }
+
   render() {
     const formItemLayout = {
       labelCol: {
@@ -39,12 +46,12 @@ class Step2Form extends PureComponent {
     };
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form>
         <FormItem
           {...formItemLayout}
           label="注"
         >
-          {getFieldDecorator('customerName', {
+          {getFieldDecorator('comment', {
             // rules: [{
             //   required: true, message: '请输入客户名称！',
             // }],
@@ -55,13 +62,41 @@ class Step2Form extends PureComponent {
         <FormItem
           {...formItemLayout}
           label="上传图片"
-          extra="可以上传多张图片"
         >
-          {getFieldDecorator('upload', {
+          {getFieldDecorator('picList', {
             valuePropName: 'fileList',
             getValueFromEvent: this.normFile,
           })(
-            <Upload name="cpic" action="/upload.do" listType="picture">
+            <Upload
+              name="cpic"
+              listType="picture"
+              multiple={false}
+              beforeUpload={() => {
+                return false;
+              }}
+            >
+              <Button>
+                <Icon type="upload" /> 点击上传
+              </Button>
+            </Upload>
+          )}
+        </FormItem>
+        <FormItem
+          {...formItemLayout}
+          label="上传CSV"
+        >
+          {getFieldDecorator('csvList', {
+            valuePropName: 'fileList',
+            getValueFromEvent: this.normFile,
+          })(
+            <Upload
+              name="ccsv"
+              listType="text"
+              multiple={false}
+              beforeUpload={() => {
+                return false;
+              }}
+            >
               <Button>
                 <Icon type="upload" /> 点击上传
               </Button>

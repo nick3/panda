@@ -53,6 +53,8 @@ const proxy = {
     $body: postRule,
   },
   'GET /api/notices': getNotices,
+  'POST /api/*': 'http://192.168.2.40:3000/',
 };
 
-export default noProxy ? {} : delay(proxy, 1000);
+// export default noProxy ? {} : delay(proxy, 1000);
+export default proxy;
